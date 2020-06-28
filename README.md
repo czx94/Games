@@ -3,5 +3,10 @@ Easy games implemented by python
 
 |   Game   |                                                                                                                
 | :-------:| 
-|  Hangman |
+|Hangman|
+
+|  TO DO   |                                                                                                                
+| :-------:| 
+|SnakeGame|
+
 

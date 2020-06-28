@@ -3,32 +3,32 @@ colour = ['red', 'green', 'blue', 'yellow', 'black']
 
 class Form(object):
     def __init__(self, x, y, c):
-        self.__xc = max(0, x)
-        self.__yc = max(0, y)
+        self._xc = max(0, x)
+        self._yc = max(0, y)
         if c in colour:
-            self.__c = c
+            self._c = c
         else:
-            self.__c = colour[0]
+            self._c = colour[0]
 
     def set_center(self, x, y):
-        self.__xc = x
-        self.__yc = y
+        self._xc = x
+        self._yc = y
 
     def get_center(self):
-        return self.__xc, self.__yc
+        return self._xc, self._yc
 
     def set_colour(self, c):
         if c in colour:
-            self.__c = c
+            self._c = c
         else:
-            self.__c = colour[0]
+            self._c = colour[0]
 
     def get_colour(self):
-        return self.__c
+        return self._c
 
     def deplacement(self, dx, dy):
-        self.__xc = max(0, self.__xc + dx)
-        self.__yc = max(0, self.__yc + dy)
+        self._xc = max(0, self._xc + dx)
+        self._yc = max(0, self._yc + dy)
         
     def display(self, can):
         raise NotImplementedError
@@ -36,21 +36,21 @@ class Form(object):
 class Rectangle(Form):
     def __init__(self, x, y, c, l, h):
         Form.__init__(self, x, y, c)
-        self.__l = max(0, l)
-        self.__h = max(0, h)
+        self._l = max(0, l)
+        self._h = max(0, h)
 
     def set_dim(self, h, l):
-        self.__l = max(0, l)
-        self.__h = max(0, h)
+        self._l = max(0, l)
+        self._h = max(0, h)
 
     def get_dim(self):
-        return self.__h, self.__l
+        return self._h, self._l
 
     def perimeter(self):
-        return (self.__h + self.__l) * 2
+        return (self._h + self._l) * 2
 
     def surface(self):
-        return self.__h * self.__l
+        return self._h * self._l
 
     def display(self, can):
         x, y = self.get_center()
@@ -66,7 +66,7 @@ class Rectangle(Form):
 class Square(Rectangle):
     def __init__(self, x, y, c, l):
         Rectangle.__init__(self, x, y, c, l, l)
-        self.__l = max(0, l)
+        self._l = max(0, l)
 
     def set_dim(self, l):
         Rectangle.set_dim(self, l, l)
@@ -82,32 +82,25 @@ class Square(Rectangle):
         can.create_rectangle(x - l / 2, y - l / 2, x + l / 2, y + l / 2, fill=c)
 
 
-class Cercle(Form):
+class Circle(Form):
     def __init__(self, x, y, c, d):
         Form.__init__(self, x, y, c)
-        self.__d = max(0, d)
+        self._d = max(0, d)
 
     def set_dim(self, d):
-        self.__d = max(0, d)
+        self._d = max(0, d)
 
     def get_dim(self):
-        return self.__d
+        return self._d
 
     def perimeter(self):
-        return 3.14 * self.__d
+        return 3.14 * self._d
 
     def surface(self):
-        return 3.14 / 4 * self.__d ** 2
+        return 3.14 / 4 * self._d ** 2
 
     def display(self, can):
         x, y = self.get_center()
         d = self.get_dim()
         c = self.get_colour()
         can.create_oval(x - d / 2, y - d / 2, x + d / 2, y + d / 2, fill=c)
-
-
-
-
-
-
-
